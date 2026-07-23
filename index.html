@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iconic Things-Hobby of Kings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-subtle: #b89b34;
+            --dark-bg: #121212;
+            --card-bg: #1a1a1a;
+            --card-bg-light: #1e1e1e;
+            --text-light: #e0e0e0;
+            --accent-gold: #f1c40f;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark-bg) url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%231a1a1a" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('http://googleusercontent.com/image_collection/image_retrieval/7371083348806715698_0');
+            background-size: cover; background-position: center;
+            height: 30vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        h1 { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--gold); margin: 0; }
+
+        .container { max-width: 1100px; margin: -40px auto 50px; padding: 0 20px; position: relative; }
+
+        /* QUIZ ENGINE - AT THE TOP */
+        .quiz-section { 
+            background: var(--card-bg); 
+            padding: 30px; 
+            border-radius: 15px; 
+            margin-bottom: 30px; 
+            border: 1px solid #333; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+
+        /* MAIN CONTENT GRID - GUIDE & BOT */
+        .main-layout { display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
+
+        .content-section {
+            background: var(--card-bg-light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .question-text { font-size: 1.2rem; color: var(--gold); margin-bottom: 20px; font-family: 'Cinzel', serif; }
+
+        .option-btn {
+            display: block; width: 100%; max-width: 500px; margin: 8px auto; background: var(--card-bg); 
+            color: white; border: 1px solid #444; padding: 14px; text-align: left; 
+            border-radius: 8px; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden;
+        }
+        .option-btn:hover { background: var(--card-bg-light); border-color: var(--gold); transform: translateX(5px); }
+
+        .tool-card {
+            background: var(--card-bg); padding: 20px; border-radius: 10px;
+            border-left: 4px solid var(--gold); margin-top: 20px;
+        }
+
+        .coin-btn {
+            background: linear-gradient(145deg, var(--accent-gold), var(--gold-subtle)); border: none; padding: 12px 20px; margin: 5px;
+            font-family: 'Cinzel', serif; font-weight: bold; cursor: pointer; border-radius: 4px; transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3); color: black;
+        }
+        .coin-btn:hover { background: linear-gradient(145deg, var(--gold), var(--gold)); transform: scale(1.05); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+
+        /* AI BOT STYLING */
+        .bot-sidebar {
+            background: var(--card-bg); border-radius: 15px; border: 1px solid #333;
+            display: flex; flex-direction: column; height: 600px; position: sticky; top: 20px;
+        }
+
+        .bot-header {
+            background: var(--gold); color: black; padding: 15px;
+            border-radius: 14px 14px 0 0; font-family: 'Cinzel', serif; font-weight: bold; text-align: center;
+        }
+        /* --- FOOTER STYLING --- */
+footer {
+    background-color: #0a0a0a;
+    color: #888;
+    padding: 60px 20px 20px;
+    margin-top: 50px;
+    border-top: 2px solid var(--gold);
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+.footer-section h4 {
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.footer-section p, 
+.footer-section a {
+    font-size: 0.9rem;
+    color: #aaa;
+    text-decoration: none;
+    transition: 0.3s;
+    display: block;
+    margin: 12px 0;
+}
+
+.footer-section a:hover {
+    color: var(--gold);
+    padding-left: 8px; /* Subtle slide effect */
+}
+
+.footer-bottom {
+    border-top: 1px solid #222;
+    padding-top: 25px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    color: #666;
+    font-family: 'Cinzel', serif;
+}
+
+.coin-emblem {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    display: inline-block;
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+}
+
+/* Back to Top Smoothness */
+html {
+    scroll-behavior: smooth;
+}
+
+        #bot-log { flex: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; background: #111; }
+        .msg { padding: 10px; border-radius: 8px; margin-bottom: 10px; line-height: 1.4; }
+        .msg-user { background: #34495e; color: white; margin-left: 20px; text-align: right; }
+        .msg-ai { background: var(--card-bg-light); border-left: 3px solid var(--gold); margin-right: 20px; }
+
+        .input-area { display: flex; padding: 10px; background: #111; border-top: 1px solid #333; border-radius: 0 0 15px 15px; }
+        #query { flex: 1; background: #222; border: 1px solid #444; color: white; padding: 12px; border-radius: 4px; transition: 0.3s; }
+        #query:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.2); outline: none; }
+
+        /* --- SOCIAL OUTRO SECTION --- */
+        .social-outro {
+            background: linear-gradient(145deg, var(--card-bg-light), var(--dark-bg));
+            padding: 60px 20px;
+            margin: 60px auto;
+            border-radius: 20px;
+            max-width: 1100px;
+            text-align: center;
+            border: 1px solid #333;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .outro-title { font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.8rem; margin-bottom: 10px; }
+        .outro-text { color: #aaa; margin-bottom: 30px; font-style: italic; }
+        .social-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-card {
+            background: rgba(255, 255, 255, 0.05); padding: 15px 35px; border-radius: 12px;
+            text-decoration: none; color: white !important; border: 1px solid #444;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; align-items: center; gap: 12px; min-width: 180px; justify-content: center;
+        }
+        .tiktok-card:hover {
+            border-color: #ff0050; box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+            transform: translateY(-8px) scale(1.05); background: rgba(255, 0, 80, 0.1);
+        }
+        .youtube-card:hover {
+            border-color: #ff0000; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            transform: translateY(-8px) scale(1.05); background: rgba(255, 0, 0, 0.1);
+        }
+        .social-name { font-family: 'Cinzel', serif; font-weight: bold; letter-spacing: 1px; }
+
+        /* ANIMATIONS */
+        @keyframes laser-green {
+            0% { background-color: #2ecc71; box-shadow: 0 0 20px #2ecc71; color: white; }
+            100% { background-color: transparent; }
+        }
+        @keyframes laser-red {
+            0% { background-color: #e74c3c; box-shadow: 0 0 20px #e74c3c; color: white; }
+            100% { background-color: transparent; }
+        }
+        .laser-correct { animation: laser-green 0.6s ease-out; }
+        .laser-wrong { animation: laser-red 0.6s ease-out; }
+
+        /* --- FLIPPABLE CARDS --- */
+        .flip-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .flip-card { background-color: transparent; perspective: 1000px; height: 80px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 10px;
+        }
+        .flip-card-front {
+            background: var(--card-bg);
+            border-left: 4px solid var(--gold);
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .flip-card-back {
+            background: var(--gold-subtle);
+            color: black;
+            transform: rotateY(180deg);
+            padding: 5px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .flip-card p { margin: 0; }
+
+
+        @media (max-width: 900px) { .main-layout { grid-template-columns: 1fr; } .bot-sidebar { position: static; height: 500px; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ICONIC THINGS</h1>
+    <p style="color: var(--gold); letter-spacing: 3px;">THE NUMISMATIST</p>
+</header>
+
+<div class="container">
+    <section class="quiz-section">
+        <h3 style="font-family: 'Cinzel'; color: var(--gold); margin-top: 0;">The Iconic Master Quiz</h3>
+        <div id="quiz-container">
+            <div id="start-screen">
+                <div style="font-size: 60px; margin-bottom: 10px;">🪙</div>
+                <h2 style="font-family: 'Cinzel';">Are you a true collector?</h2>
+                <p style="opacity: 0.8;">Test your expertise with 12 random numismatic questions.</p>
+                <p style="opacity: 0.7;">Let's see, how much you know about Numismatics</p>
+                <button class="coin-btn" style="font-size: 1.2rem; padding: 15px 40px;" onclick="initiateQuiz()">Start Challenge</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="main-layout">
+        <div class="left-col">
+            <section class="content-section">
+                <h2 style="font-family: 'Cinzel'; color: var(--gold);">Instant Identification Guide</h2>
+                <p>Use the expert bot for questions. For coin values, use the grading simulator below.</p>
+                
+                <div class="tool-card">
+                    <h3 id="grading-tool-anchor">Virtual Grading Scale (Sheldon)</h3>
+                    <button class="coin-btn" onclick="checkGrade('Poor')">Basal State (1)</button>
+                    <button class="coin-btn" onclick="checkGrade('Fine')">Fine (12)</button>
+                    <button class="coin-btn" onclick="checkGrade('Unc')">Uncirculated (60+)</button>
+                    <div id="grade-info" style="margin-top:15px; color:var(--gold); font-weight: bold;"></div>
+                </div>
+
+                <h3 style="margin-top:40px; font-family: 'Cinzel'; color: var(--gold);">Essential Terms (Hover to Flip)</h3>
+                <div class="flip-card-grid">
+                    <div class="flip-card"><div class="flip-card-inner">
+                        <div class="flip-card-front"><p>Obverse</p></div>
+                        <div class="flip-card-back"><p>The 'heads' or front side of the coin.</p></div>
+                    </div></div>
+                    <div class="flip-card"><div class="flip-card-inner">
+                        <div class="flip-card-front"><p>Reverse</p></div>
+                        <div class="flip-card-back"><p>The 'tails' or back side of the coin.</p></div>
+                    </div></div>
+                    <div class="flip-card"><div class="flip-card-inner">
+                        <div class="flip-card-front"><p>Mintage</p></div>
+                        <div class="flip-card-back"><p>The total number of coins produced for a specific date/mint.</p></div>
+                    </div></div>
+                    <div class="flip-card"><div class="flip-card-inner">
+                        <div class="flip-card-front"><p>Bullion</p></div>
+                        <div class="flip-card-back"><p>A coin valued by its precious metal content, not rarity.</p></div>
+                    </div></div>
+                </div>
+            </section>
+        </div>
+
+        <aside class="bot-sidebar">
+            <div class="bot-header">The Iconic Numismatic Library</div>
+            <div id="bot-log">
+                <div class="msg msg-ai"><strong>Welcome!</strong> Ask me about common numismatic questions!, Remember, the website is under construction so some answers maybe unavailible or irrelevent.</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="query" placeholder="Type a keyword...">
+                <button onclick="localAI()" style="background:var(--gold); border:none; padding:10px 15px; margin-left:5px; border-radius:4px; cursor:pointer; font-weight:bold;">➜</button>
+            </div>
+        </aside>
+    </div>
+</div>
+
+<section style="text-align: center; margin: 40px auto; padding: 20px; max-width: 1100px;">
+    <h2 style="font-family: 'Cinzel', serif; color: var(--gold); font-size: 1.8rem;">Showcase Your Vault</h2>
+    <p>Tell us about your personal collection and get an expert's appraisal of your journey.</p>
+    <button class="coin-btn" onclick="openCollectionModal()">Share My Collection</button>
+</section>
+
+<section class="social-outro">
+    <h2 class="outro-title">Join the Iconic World</h2>
+    <p class="outro-text">Follow our journey through history and rare finds across the web.</p>
+    <div class="social-btns">
+        <a href="https://www.tiktok.com/@iconicthings.official?is_from_webapp=1&sender_device=pc" target="_blank" class="social-card tiktok-card">
+            <span class="social-icon">📱</span>
+            <span class="social-name">TikTok</span>
+        </a>
+        <a href="https://www.youtube.com/channel/UC_9Lb1g4FxIZZjkrjt4RfJA" target="_blank" class="social-card youtube-card">
+            <span class="social-icon">🎥</span>
+            <span class="social-name">YouTube</span>
+        </a>
+    </div>
+</section>
+
+<div id="collection-modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); overflow-y: auto;">
+    <div style="background: var(--card-bg); margin: 5% auto; padding: 30px; border: 2px solid var(--gold); border-radius: 15px; width: 90%; max-width: 600px; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+        <span onclick="closeCollectionModal()" style="position: absolute; right: 20px; top: 10px; color: var(--gold); cursor: pointer; font-size: 2rem;">&times;</span>
+        
+        <div id="modal-content">
+            <h3 style="font-family: 'Cinzel', serif; color: var(--gold); text-align: center;">Collection Entry</h3>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <label>How many <strong>Coins</strong> are in your collection?</label>
+                <input type="number" id="coin-qty" placeholder="e.g. 50" style="padding: 10px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; transition: 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='#444'">
+                
+                <label>How many <strong>Banknotes</strong> do you own?</label>
+                <input type="number" id="note-qty" placeholder="e.g. 20" style="padding: 10px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; transition: 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='#444'">
+                
+                <label>Do you collect <strong>Medals or Badges</strong>? (Optional)</label>
+                <input type="text" id="medal-info" placeholder="e.g. Military medals, none" style="padding: 10px; border-radius: 5px; border: 1px solid #444; background: #222; color: white; transition: 0.3s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='#444'">
+                
+                <button class="coin-btn" onclick="startInterview()">Submit & Begin Interview</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="coin-emblem">🏛️</div>
+            <h4>ICONIC WORLD</h4>
+            <p>Preserving the metallic history of civilizations, one strike at a time. The ultimate resource for the modern collector.</p>
+            <P>"Iconic Things: History You Can Hold. Where Every Strike is Iconic."</P>
+            <h5 style="text-align: center;">THE HOBBY OF KINGS</h5>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <a href="https://en.numista.com/" target="_blank">Numista Catalogue</a>
+            <a href="https://www.pcgs.com/photograde" target="_blank">PCGS Photograde</a>
+            <a href="https://www.ngccoin.com/" target="_blank">NGC Coin Explorer</a>
+        </div>
+        <div class="footer-section">
+            <h4>Quick Links</h4>
+            <a href="#" onclick="scrollToTop(event)">Back to Top</a>
+            <a href="#grading-tool-anchor" onclick="smoothScroll(event, 'grading-tool-anchor')">Sheldon Scale Guide</a>
+            <a href="#" onclick="showHandlingTips()">Handling Tips</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 ICONIC THINGS • PAKISTAN • A WORLD OF NUMISMATICS (History in Your Hands)
+    </div>
+</footer>
+
+<script>
+    // --- ALL SCRIPTS CONSOLIDATED ---
+
+    // --- KNOWLEDGE BASE & AI BOT ---
+    const library = {
+       "cleaning": "🚨 <strong>NEVER CLEAN COINS.</strong> Even soft cloths create micro-scratches called 'hairlines'. Original patina is always more valuable than a shiny, ruined coin.",
+        "clean":"🚨<strong>NEVER CLEAN COINS.</strong> Even soft cloths create micro-scratches called 'hairlines'. Original patina is always more valuable than a shiny, ruined coin.",
+        "grading": "We use the Sheldon Scale (1 to 70). MS-70 is a perfect coin. Anything below 60 has been in circulation (spent in a store). <strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "grade":"We use the Sheldon Scale (1 to 70). MS-70 is a perfect coin. Anything below 60 has been in circulation (spent in a store). Its better to check gradings of your coin on platforms like PCGS or NGC. <strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "value": "Value is determined by <strong>Rarity, Condition, and Demand.</strong> Check the 'Red Book' or Numista.com for recent auction records. <strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "valuable": "Value is determined by <strong>Rarity, Condition, and Demand.</strong> Check the 'Red Book' or Numista.com for recent auction records. <strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "silver": "Pre-1964 US Quarters and Dimes are 90% silver. They are often called 'Junk Silver' but are highly collectible for their metal content. Silver coins are also much Valuable but you must be aware of fake replicas of silver coins,<strong> Beware!!</strong> <strong><br>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "error": "Error coins (like double-dies or off-center strikes) are very valuable because they are 'accidents' that escaped the mint. <strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "gold": "Gold is measured in <strong>Karat</strong> (purity) or <strong>Troy Ounces</strong> (weight). Real gold is never magnetic and never tarnishes. Gold coins are very valuable, the worlds most expensive coin is also a gold coin from ancient times. If you have one, You are lucky!. <strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "banknotes": "Banknotes are also a part of numismatics. If you want information about banknotes, you may check on wesites like banknoteworld.com , en.numista.com or applications like Maktun for better and relevant opinions and information.",
+        "real": "<strong>1. The Magnet Test :</strong><br> Hold a strong magnet to the coin. Silver and gold are not magnetic. If the coin sticks, it is a fake made of steel or nickel. <br> <strong>2. Weight and Size :</strong><br> Compare your coin’s weight (using a digital scale) to its official government specifications. Even a 1-gram difference is a major red flag. <strong><br>3. The 'Ping' Test : </strong><br> Balance the coin on your fingertip and gently tap it with another coin. Real silver/gold: Produces a high-pitched, long-lasting ring. Base metals: Produces a dull, short thud.<strong> <br>4. Detail Check :</strong><br>Look at the fine lines (like hair or feathers) and the 'reeds' (the ridges on the edge).<strong> <br>Real:</strong> Sharp, crisp, and deep. <strong><br>Fake: </strong>'Mushy,' rounded, or blurry details caused by cheap casting.",
+        "fake": "<strong>1. The Magnet Test :</strong><br> Hold a strong magnet to the coin. Silver and gold are not magnetic. If the coin sticks, it is a fake made of steel or nickel. <br> <strong>2. Weight and Size :</strong><br> Compare your coin’s weight (using a digital scale) to its official government specifications. Even a 1-gram difference is a major red flag. <strong><br>3. The 'Ping' Test : </strong><br> Balance the coin on your fingertip and gently tap it with another coin. Real silver/gold: Produces a high-pitched, long-lasting ring. Base metals: Produces a dull, short thud.<strong> <br>4. Detail Check :</strong><br>Look at the fine lines (like hair or feathers) and the 'reeds' (the ridges on the edge).<strong> <br>Real:</strong> Sharp, crisp, and deep. <strong><br>Fake: </strong>'Mushy,' rounded, or blurry details caused by cheap casting.",
+        "old": "To tell if a coin is genuinely old rather than a modern reproduction, look for these three things:<strong><br> 1. The Date and Mint Mark :</strong><br>Check the year clearly stamped on the coin. If the date is very old (e.g., 1800s) but the coin looks brand new and shiny, it is likely a modern replica.<strong><br> 2. Wear and Patina Real Age:</strong><br> Look for 'circulation wear' (fading on the high points like hair or crowns) and patina (natural darkening or 'toning' from decades of exposure to air). <strong><br>Fake Age: </strong><br>Modern fakes often use acid or grease to look 'dirty,'' but the dirt will look blotchy and wipe off easily.<strong><br> 3. Design and Composition Materials:</strong><br> Most US coins from before 1965 are 90% silver. If you look at the edge and see a copper-colored strip, it is a modern 'clad' coin (post-1964).<strong><br> Style:</strong><br> Research the design for that year. If the font or the portrait looks slightly 'off' compared to official photos, it’s likely a modern copy.",
+        "new": "To tell if a coin is genuinely old rather than a modern reproduction, look for these three things:<strong><br> 1. The Date and Mint Mark :</strong><br>Check the year clearly stamped on the coin. If the date is very old (e.g., 1800s) but the coin looks brand new and shiny, it is likely a modern replica.<strong><br> 2. Wear and Patina Real Age:</strong><br> Look for 'circulation wear' (fading on the high points like hair or crowns) and patina (natural darkening or 'toning' from decades of exposure to air). <strong><br>Fake Age: </strong><br>Modern fakes often use acid or grease to look 'dirty,'' but the dirt will look blotchy and wipe off easily.<strong><br> 3. Design and Composition Materials:</strong><br> Most US coins from before 1965 are 90% silver. If you look at the edge and see a copper-colored strip, it is a modern 'clad' coin (post-1964).<strong><br> Style:</strong><br> Research the design for that year. If the font or the portrait looks slightly 'off' compared to official photos, it’s likely a modern copy.",
+        "year": "If you want to check the production year of the coin, you should check the year printed commonly on its lower side, Or you can visit numismatics related websites like numista.com or herit coin. Look for the four-digit date stamped on the 'heads' (obverse) side.<strong><br> Location:</strong><br> Usually at the bottom or near the portrait’s base.<strong><br> Wear:</strong><br> If it's worn flat, tilt it under a bright light to see the faint outline.<strong><br> Acid (Last Resort):</strong><br> For 'dateless' buffalo nickels, a drop of Nic-A-Date can chemically reveal the year.",
+        "mint mark": "A <strong>Mint Mark </strong>is a tiny letter acting as a <strong>'factory stamp'</strong> to show which city struck the coin; <br>it is crucial for collectors because coins from specific locations are often produced in much smaller quantities, making them significantly rarer and more valuable.<strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "magnetic":"<strong>Most coins are non-magnetic,</strong> but those containing a steel, iron, or nickel core will react strongly to a magnet.<br> This includes modern Euro cents, post-1992 UK copper coins, and the famous 1943 US Steel Penny, which was minted during WWII to save copper for the war effort. <br>Checking for magnetism is also a vital tool for collectors to detect counterfeits, as fake silver or gold coins often hide a cheap, magnetic steel center beneath their plated surface. <strong><br>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "obverse": "The <strong>Obverse</strong> is the 'heads' side of the coin, usually featuring a portrait or a primary national symbol.",
+        "reverse": "The <strong>Reverse</strong> is the 'tails' side of the coin, typically displaying the denomination and secondary designs.",
+        "rim": "The <strong>Rim</strong> is the raised portion around the edge of a coin. It protects the design from wearing down too quickly.",
+        "edge": "The <strong>Edge</strong> is the 'third side' of a coin. It can be reeded (grooved), lettered, or plain.",
+        "planchet": "A <strong>Planchet</strong> is the blank metal disc before it is struck by the coin dies to become a coin.",
+        "banknote": "Banknotes are paper currency. Key things to look for are <strong>Serial Numbers, Watermarks, and Security Threads.</strong> Check banknoteworld.com for details.",
+        "notaphily": "<strong>Notaphily</strong> is the scientific study and collecting of paper currency and banknotes.",
+        "watermark": "A <strong>Watermark</strong> is a ghost-like image built into the paper of a banknote that can be seen when held up to the light. It is a major security feature.",
+        "serial": "On banknotes, a <strong>Serial Number</strong> is unique. Low numbers (000001) or 'Fancy' numbers (12341234) are worth much more to collectors.",
+        "star note": "A <strong>Star Note</strong> has a ★ symbol in the serial number. These are replacement notes for sheets that were damaged during printing and are often rare.",
+        "double die": "A <strong>Double Die</strong> error occurs when the coin die is struck twice with a hub, causing doubling of the letters or dates. It happens *before* the coin is minted.",
+        "off-center": "An <strong>Off-center</strong> error happens when the planchet isn't lined up correctly, leaving part of the coin blank. 10% to 50% off-center is highly collectible.",
+        "mule": "A <strong>Mule</strong> is a very rare error where the obverse of one coin is paired with the reverse of a different coin denomination or type.",
+        "bullion": "<strong>Bullion</strong> refers to coins or bars valued strictly by their metal weight (Gold, Silver, Platinum) rather than their rarity.",
+        "magnet": "Check your coins with a magnet. If it sticks, it usually has a <strong>Steel or Iron core</strong>. Real Silver and Gold will *never* stick.",
+        "patina": "<strong>Patina</strong> (or Toning) is the natural oxidation on a coin's surface. Collectors often pay extra for beautiful 'Rainbow Toning' on silver coins.",
+        "fancy": "<strong>Fancy Serial Numbers</strong> include: <em>Radars</em> (reads same forward/back), <em>Repeaters</em> (121212), and <em>Low Serials</em> (under 100). These carry huge premiums!",
+        "security": "Modern banknotes use <strong>Microprinting, Color-shifting ink, and 3D security ribbons</strong> to prevent counterfeiting. Hold a note to the light to see the embedded thread.",
+        "inflation": "<strong>Hyperinflation currency</strong> (like 1920s Germany or modern Zimbabwe) features massive denominations like '100 Trillion Dollars.' They are popular historical curiosities.",
+        "polymer": "Many countries (UK, Canada, Australia) now use <strong>Polymer</strong> (plastic) banknotes. They are more durable and harder to counterfeit than traditional cotton-paper.",
+        "clipped": "A <strong>Clipped Planchet</strong> happens when the coin is punched from a metal strip that wasn't moved far enough, resulting in a 'bite' taken out of the coin.",
+        "die crack": "A <strong>Die Crack</strong> appears as a raised, jagged line of metal on the coin's surface. This happens when the hardened steel die begins to break from pressure.",
+        "morgan": "The <strong>Morgan Silver Dollar</strong> (1878-1921) is the most collected silver coin in history. Look for the 'CC' mint mark (Carson City) for the highest values.",
+        "wheat": "<strong>Wheat Pennies</strong> (1909-1958) are common. The 'holy grail' is the 1909-S VDB, which features the designer's initials on the bottom of the reverse.",
+        "buffalo": "The <strong>Buffalo Nickel</strong> often has 'worn dates.' You can use <em>Nic-A-Date</em> (acid) to reveal the year, but this technically damages the coin's value.",
+        "krugerrand": "The <strong>Krugerrand</strong> is a South African gold bullion coin. It was the first gold coin to contain exactly one troy ounce of fine gold.",
+        "melt": "<strong>Melt Value</strong> is the raw metal worth. For example, a 90% silver dime is worth roughly 20x its face value just for the silver content.",
+        "premium": "The <strong>Premium</strong> is the amount you pay *above* the metal price. Rare coins have high premiums; bullion coins have low premiums.",
+        "slab": "A <strong>Slabbed</strong> coin is one that has been professionally graded and sealed in a plastic holder by companies like PCGS or NGC.",
+        "junk": "<strong>Junk Silver</strong> is a term for common, circulated silver coins (pre-1965 US) that have no special collector value beyond their silver weight.",
+        "holder": "Use <strong>PVC-free</strong> holders (Mylar flips) for storage. Old PVC plastic can turn coins green and permanently corrode the surface.",
+        "toning": "<strong>Toning</strong> is natural oxidation. 'Rainbow toning' can increase a coin's value, while 'Milk spots' (white cloudy spots) often decrease it.", "ancient": "Ancient coins (Greek, Roman, Byzantine) were <strong>hand-struck</strong>, not machine-made. This means every coin is unique. Look for 'Centration' (how centered the strike is) to determine value.",
+        "denarius": "The <strong>Denarius</strong> was the standard Roman silver coin. Collectors look for the portraits of famous Emperors like Julius Caesar or Augustus. Beware of 'fourrée' fakes (silver-plated copper).",
+        "planchette": "In banknotes, <strong>Planchettes</strong> are tiny colored discs embedded in the paper (common in Canadian bills) as a security feature to prevent color-copier counterfeiting.",
+        "specimen": "A <strong>Specimen</strong> note is a banknote printed to be sent to central banks or printers as a reference. They are usually overprinted with 'SPECIMEN' and have serial numbers like 000000. They are very rare.",
+        "intaglio": "<strong>Intaglio Printing</strong> is the raised ink you feel on genuine banknotes. If the bill feels completely smooth like a computer printout, it is likely a counterfeit.",
+        "proof": "<strong>Proof</strong> coins are not meant for circulation. They are struck twice using specially polished dies to create a mirror-like background and frosted foreground. They are made specifically for collectors.",
+        "cameo": "<strong>Cameo</strong> refers to the contrast on a Proof coin where the portrait looks white and frosted while the background is a deep, dark mirror.",
+        "bag marks": "<strong>Bag Marks</strong> are minor nicks and scratches found on uncirculated coins. They occur when coins jingle against each other in large canvas mint bags before being tubed.",
+        "platinum": "Platinum coins are rarer than gold. They have a duller, grayish-white luster compared to silver. They are extremely dense and will be much heavier than a silver coin of the same size.",
+        "palladium": "<strong>Palladium</strong> is a rare member of the platinum group. It is used in high-end bullion coins like the American Eagle Palladium. It is lighter than platinum but harder to find.",
+        "overstruck": "An <strong>Overstruck</strong> coin occurs when an existing coin is used as a 'planchet' and struck again with a new design. This was common in early colonial history to save on metal.",
+        "brockage": "A <strong>Brockage</strong> error occurs when a coin gets stuck to a die and strikes the next blank. This creates a coin with the same image on both sides (one raised, one sunken/incuse).",
+        "rotation": "<strong>Rotated Die</strong> error happens when the 'heads' and 'tails' sides are not aligned correctly. In the US, they should be 180 degrees apart (flip vertically). If they are aligned like a medal, it's an error.",
+        "hoard": "A <strong>Hoard</strong> is a large group of coins found together (often buried). Famous hoards like the 'Binion Hoard' or 'Saddle Ridge Hoard' can change the rarity of a specific coin year instantly.",
+        "key date": "A <strong>Key Date</strong> is the rarest year in a specific coin series (like the 1916-D Mercury Dime). 'Semi-key' dates are the second or third hardest years to find.",
+        "rare":"To check if a coin is rare, you should focus on three primary factors: <br><strong> Mintage Figures:</strong><br> Determine how many were originally produced; a lower total production often indicates higher rarity. <br><strong>Key Dates and Mint Marks:</strong><br> Look for specific years or small letters (mint marks) that represent low-production runs at certain mints.<br>You can verify these details using specialized resources: <br><strong> Numista.com</strong><br><strong>PCGS or NGC</strong>",
+        "rarity":"Check your coin's Mintage (how many were made), Key Date (rare years), and Mint Mark (location of strike). <br><strong>Low production numbers and high grades on the Sheldon Scale (1-70) indicate rarity.</strong><br>You can verify these details using specialized resources: <br><strong> Numista.com</strong><br><strong>PCGS or NGC</strong>",
+        "mintage":"To check the mintage of a coin, look up the Year, Mint Mark, and Denomination in a trusted database.<br> Low mintage numbers (total coins produced) are the primary indicator of rarity and higher value. <strong><br>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+        "mint":"To check the mintage of a coin, look up the Year, Mint Mark, and Denomination in a trusted database.<br> Low mintage numbers (total coins produced) are the primary indicator of rarity and higher value. <strong><br>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong>",
+    };
+    
+    // --- QUIZ ENGINE ---
+    const masterQuizPool = [
+        {q: "What is the 'heads' side of a coin called?", a: ["Reverse", "Rim", "Obverse", "Edge"], c: 2 },
+{ q: "What metal was used for the 1943 US Penny?", a: ["Copper", "Steel", "Silver", "Zinc"], c: 1 },
+{ q: "A coin graded 70 on the Sheldon scale is...", a: ["Worn", "Perfect", "Cleaned", "Proof"], c: 1 },
+{ q: "What is the study of paper money called?", a: ["Notaphily", "Philately", "Numismatics", "Vexillology"], c: 0 },
+{ q: "Which mint mark is for San Francisco?", a: ["D", "P", "CC", "S"], c: 3 },
+{ q: "Is pure silver magnetic?", a: ["Yes", "No", "Only if old", "Only if cold"], c: 1 },
+{ q: "What does 'Mintage' mean?", a: ["Value", "Metal type", "Total produced", "Coin age"], c: 2 },
+{ q: "Which US President is on the Dime?", a: ["Lincoln", "Roosevelt", "Kennedy", "Eisenhower"], c: 1 },
+{ q: "What is 'Junk Silver'?", a: ["Dirty coins", "Common 90% silver coins", "Fakes", "Broken coins"], c: 1 },
+{ q: "What is the 'tails' side called?", a: ["Reverse", "Obverse", "Edge", "Planchet"], c: 0 },
+{ q: "What metal is a US Nickel mostly made of?", a: ["Nickel", "Steel", "Silver", "Copper"], c: 3 },
+{ q: "What marks the city where a coin was struck?", a: ["Date", "Denom", "Mint Mark", "Rim"], c: 2 },
+{ q: "What is a 'Mule' error?", a: ["A heavy coin", "Mismatch of front/back dies", "A animal coin", "A fake"], c: 1 },
+{ q: "What is the raised edge of a coin called?", a: ["Field", "Rim", "Reeding", "Legend"], c: 1 },
+{ q: "A 'Star Note' on a bill indicates it is a:", a: ["Rare first print", "Replacement note", "Forgeries", "Gold certificate"], c: 1 },
+{ q: "What is a 'Planchet'?", a: ["A storage box", "A blank metal disc", "A cleaning tool", "A fake coin"], c: 1 },
+{ q: "What is 'Numismatics'?", a: ["Study of stamps", "Study of rocks", "Study of currency", "Study of stars"], c: 2 },
+{ q: "Pre-1964 US Quarters contain how much silver?", a: ["10%", "50%", "90%", "100%"], c: 2 },
+{ q: "What is the 'Melt Value' of a coin?", a: ["Retail price", "Value of raw metal", "Minting cost", "Insurance value"], c: 1 },
+{ q: "What is the lowest grade on the Sheldon Scale?", a: ["0", "1", "3", "P"], c: 1 },
+{ q: "What is 'Luster' on a coin?", a: ["Original mint shine", "Artificial polish", "Rust", "Dirt"], c: 0 },
+{ q: "Should you clean a rare coin to make it shiny?", a: ["Yes, always", "Only with soap", "No, never", "Only with a cloth"], c: 2 },
+{ q: "What are 'Bag Marks'?", a: ["Intentional scratches", "Minor nicks from other coins", "Fake details", "Acid damage"], c: 1 },
+{ q: "What is 'Patina'?", a: ["A type of error", "Natural surface oxidation", "A cleaning chemical", "A fake coating"], c: 1 },
+{ q: "What is a 'Clipped Planchet'?", a: ["A shiny coin", "A bite-shaped mint error", "A type of gold", "A bank bag"], c: 1 },
+{ q: "What is a 'Double Die'?", a: ["A coin struck twice", "Doubled design on the die", "A coin cut in half", "A heavy strike"], c: 1 },
+{ q: "What is 'Brockage'?", a: ["A cracked coin", "Mirror image error", "A missing date", "A bent rim"], c: 1 },
+{ q: "What is a 'Radar' serial number?", a: ["Very fast print", "Reads same forward and back", "Printed for the military", "Encrypted number"], c: 1 },
+{ q: "Which country is credited with the first paper money?", a: ["Rome", "China", "USA", "Egypt"], c: 1 },
+{ q: "What is 'Intaglio' on a banknote?", a: ["The serial number", "Raised ink you can feel", "The paper type", "A hidden watermark"], c: 1 },
+{ q: "What is a 'Specimen' note?", a: ["A fake bill", "Reference note for banks", "A bill used in space", "A dirty note"], c: 1 },
+{ q: "What is the 'Field' of a coin?", a: ["The flat background area", "The grassy design", "The coin's value", "The outer rim"], c: 0 },
+{ q: "What does 'Toning' refer to?", a: ["Cleaning a coin", "Natural color changes", "Sharpening the design", "Weight of the coin"], c: 1 },
+{ q: "What is an 'Exergue'?", a: ["A type of metal", "Space below the main design", "A fake coin", "The coin's edge"], c: 1 },
+{ q: "Which US coin has a 'W' mint mark for West Point?", a: ["Modern Quarters/Dimes", "All 1943 Pennies", "Pre-1900 Dollars", "No US coins"], c: 0 },
+{ q: "What is 'Exonumia'?", a: ["Study of tokens/medals", "Old paper money", "Foreign gold", "Currency errors"], c: 0 },
+{ q: "What is a 'Proof-Like' (PL) coin?", a: ["A fake proof", "Business strike with mirror finish", "A polished coin", "A plastic replica"], c: 1 },
+{ q: "What is 'Reeding'?", a: ["Grooves on the edge", "Reading the date", "Cleaning the surface", "A type of paper"], c: 0 },
+{ q: "What is 'Scripophily' the study of?", a: ["Stock certificates", "Ancient coins", "Gold bars", "Military medals"], c: 0 },
+{ q: "What is 'PVC damage' on a coin?", a: ["Shiny surface", "Green sticky residue", "Increased value", "A rare mint mark"], c: 1 },
+{ q: "What is a 'Slab' in numismatics?", a: ["A heavy coin", "A plastic grading holder", "A metal bar", "A cleaning stone"], c: 1 },
+{ q: "What is a 'Key Date'?", a: ["A very old coin", "A rare year/mint combo", "The date it was found", "The date the mint opened"], c: 1 },
+{ q: "What is 'Fiat Money'?", a: ["Money backed by gold", "Money with no intrinsic value", "Coins made of silver", "Old car currency"], c: 1 },
+{ q: "What are 'Hobo Nickels'?", a: ["Dirty coins", "Carved Buffalo nickels", "Fake nickels", "Bent coins"], c: 1 },
+{ q: "What is 'Phaleristics'?", a: ["Study of medals/orders", "Study of paper money", "Study of copper", "Study of errors"], c: 0 },
+{ q: "What is a 'Ghost Note'?", a: ["A fake bill", "An ink transfer error", "A clear plastic bill", "A bill with no serial"], c: 1 },
+{ q: "What is a 'Large Size' US note called?", a: ["Giant note", "Horse Blanket", "Wallpaper", "Master Bill"], c: 1 },
+{ q: "What is 'Coin Alignment'?", a: ["Aligned edges", "Upright reverse when flipped", "Perfect strike", "Center of the die"], c: 1 },
+{ q: "What is a 'Wheat Penny'?", a: ["A gold cent", "1909-1958 US cent", "A Canadian coin", "A fake penny"], c: 1 },
+{ q: "What is 'Bi-Metallic'?", a: ["A coin with two metals", "Two coins stuck together", "A magnetic coin", "A painted coin"], c: 0 },
+{ q: "What is 'Dandruff' on a coin?", a: ["Skin cells", "Small metal flakes", "White spots on silver", "Dirt"], c: 2 },
+{ q: "What is 'Cabinet Friction'?", a: ["Rust on metal", "Wear from old storage drawers", "Cleaning scratches", "Value loss from heat"], c: 1 },
+{ q: "What is a 'Low Ball' collection?", a: ["Cheap coins", "Coins in the lowest possible grade", "Small coins", "Fake coins"], c: 1 },
+{ q: "What are 'Denticles'?", a: ["Coin errors", "Small teeth-like patterns near the rim", "Scratches on the face", "Old coin tools"], c: 1 },
+{ q: "What is 'Die Deterioration'?", a: ["A rusted coin", "Wear on the stamp itself", "Metal melting", "Broken scales"], c: 1 },
+{ q: "What is 'Exonumia'?", a: ["Foreign bills", "Non-money items like tokens", "Dead currencies", "Invisible ink"], c: 1 },
+{ q: "What is 'Coin Doctoring'?", a: ["Repairing a hole", "Deceptive chemical altering", "Expert appraisal", "Cleaning with soap"], c: 1 },
+{ q: "What is a 'Solid' serial number?", a: ["Heavy bill", "All digits are the same", "No zero in the number", "A bill with no ink"], c: 1 },
+{ q: "What is 'Circulated' money?", a: ["Money kept in a vault", "Money used in daily trade", "Money that is round", "Fake money"], c: 1 },
+{ q: "What is an 'Incuse' design?", a: ["Raised design", "Design pressed into the metal", "Design on the edge", "Missing design"], c: 1 },
+{ q: "What is a 'Sovereign'?", a: ["A pirate coin", "British gold coin", "Paper money", "A type of silver"], c: 1 },
+{ q: "What is 'Whizzing'?", a: ["Dropping a coin", "Using a wire brush to fake luster", "High speed minting", "Metal testing"], c: 1 },
+{ q: "What is a 'Restrike'?", a: ["A double error", "Official coin made from old dies", "A counterfeit", "A cleaned coin"], c: 1 },
+{ q: "What is 'Toning'?", a: ["The sound a coin makes", "Natural color oxidation", "Weight of the metal", "The coin's thickness"], c: 1 },
+{ q: "What is 'Bullion'?", a: ["Soup made of coins", "Precious metal in bulk form", "A rare error", "Ancient currency"], c: 1 },
+{ q: "What is a 'First Day of Issue'?", a: ["A coin's birthday", "Notes/coins released on day one", "The very first coin made", "A new minting machine"], c: 1 },
+{ q: "What is 'Lamination' error?", a: ["Plastic on a bill", "Metal peeling off the coin surface", "A blurry print", "A thick coin"], c: 1 },
+{ q: "What is a 'Fancy Serial Number'?", a: ["A golden number", "Rare patterns like ladders or radars", "Signed by the president", "A high number"], c: 1 },
+{ q: "What is 'PVC' in collecting?", a: ["A grading company", "Chemical that damages coins", "Professional Value Center", "A metal alloy"], c: 1 },
+{ q: "What is a 'VAM'?", a: ["A type of van", "Special variety of Morgan Dollar", "A value adjustment", "A fake mark"], c: 1 },
+{ q: "What is 'Edge Lettering'?", a: ["Writing on the rim", "The date", "The designer's name", "A type of error"], c: 0 }
+];
+
+    let activeQ = [];
+    let qIdx = 0;
+    let score = 0;
+    const wrongSound = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg');
+
+    function initiateQuiz() {
+        document.getElementById('start-screen').style.display = 'none';
+        startQuiz();
+    }
+
+    function startQuiz() {
+        activeQ = masterQuizPool.sort(() => 0.5 - Math.random()).slice(0, 12); 
+        qIdx = 0; score = 0;
+        renderQ();
+    }
+
+    function renderQ() {
+        const div = document.getElementById('quiz-container');
+        const q = activeQ[qIdx];
+        div.innerHTML = `
+            <p class="question-text">Question ${qIdx + 1} of ${activeQ.length}: <br><strong>${q.q}</strong></p>
+            <div id="options-box" style="display: flex; flex-direction: column; gap: 8px;">
+                ${q.a.map((opt, i) => `<button class="option-btn" onclick="handleAns(${i}, this)">${opt}</button>`).join('')}
+            </div>
+        `;
+    }
+
+    function handleAns(i, btnElement) { 
+        const isCorrect = i === activeQ[qIdx].c;
+        document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+        if (isCorrect) {
+            score++;
+            btnElement.classList.add('laser-correct');
+        } else {
+            btnElement.classList.add('laser-wrong');
+            wrongSound.play().catch(() => {}); 
+        }
+
+        setTimeout(() => {
+            qIdx++;
+            if(qIdx < activeQ.length) { renderQ(); } else { finishQuiz(); }
+        }, 600);
+    }
+        
+    function finishQuiz() {
+        const div = document.getElementById('quiz-container');
+        const pct = Math.round((score / activeQ.length) * 100);
+        let msg = pct >= 70 ? "👑 Incredible!" : "🏛️ Keep Learning!";
+        div.innerHTML = `
+            <div class="result-box" style="padding: 20px;">
+                <h3 style="color:var(--gold)">Quiz Complete</h3>
+                <div style="font-size: 3rem; margin: 10px 0;">${pct}%</div>
+                <p>You scored ${score} out of ${activeQ.length}</p>
+                <p>${msg}</p>
+                <button class="coin-btn" onclick="startQuiz()">Try New Random Quiz</button>
+            </div>
+        `; 
+    }
+
+    // --- GRADING SIMULATOR LOGIC ---
+
+    // --- AI BOT INTERACTION LOGIC ---
+    function localAI() {
+        const input = document.getElementById('query');
+        const log = document.getElementById('bot-log');
+        const text = input.value.toLowerCase().trim();
+        
+        if(!text) return;
+
+        log.innerHTML += `<div class="msg msg-user">${input.value}</div>`;
+        
+        let found = false;
+        let response = "";
+
+        for (let key in library) {
+            if (text.includes(key)) {
+                response = library[key];
+                found = true;
+                break;
+            }
+        }
+
+        if(!found) {
+            response = `<strong>You may check on websites like Numista.com or applications like Maktun or Herit coin for more detailed and better information.</strong><br>The website is currently under costruction so I don't have information about the specific Coin or Questions, <strong>I'm Sorry</strong><br>
+                        <button class="search-btn" onclick="window.open('https://en.numista.com/catalogue/index.php?q=${text}')">
+                        Search Global Database for "${text}"
+                        </button>`;
+        }
+
+        setTimeout(() => {
+            log.innerHTML += `<div class="msg msg-ai">${response}</div>`;
+            log.scrollTop = log.scrollHeight;
+        }, 300);
+
+        input.value = "";
+    }
+
+    function checkGrade(level) {
+        const out = document.getElementById('grade-info');
+        if(level === 'Poor') out.innerHTML = "<strong>Grade 1-3:</strong> Heavily worn, but date and mint are identifiable. Worth silver value.";
+        if(level === 'Fine') out.innerHTML = "<strong>Grade 12-15:</strong> Legends are sharp. Some hair/leaf details are worn flat.";
+        if(level === 'Unc') out.innerHTML = "<strong>Grade 60+:</strong> Never used in commerce. Retains original 'Mint Luster' (shine).";
+    }
+
+    // --- COLLECTION MODAL ---
+    let currentStep = 0;
+    let userAnswers = {};
+    function openCollectionModal() {
+    document.getElementById('collection-modal').style.display = 'block';
+}
+
+function closeCollectionModal() {
+    document.getElementById('collection-modal').style.display = 'none';
+}
+
+function startInterview() {
+    const coins = document.getElementById('coin-qty').value;
+    const notes = document.getElementById('note-qty').value;
+    if(!coins || !notes) return alert("Please enter your collection quantities!");
+    
+    userAnswers.qty = parseInt(coins) + parseInt(notes);
+    currentStep = 1;
+    askNextQuestion();
+}
+
+function askNextQuestion() {
+    const display = document.getElementById('modal-content');
+    const questions = [
+        "", // Step 0 placeholder
+        "What is the oldest year currently in your collection?",
+        "Do you prefer 'Junk Silver' or high-grade 'Slabbed' coins?",
+        "Is there a specific country you focus on the most?",
+        "What was the most exciting 'find' you ever had?",
+        "Do you prefer the history behind the coin or its metallic value?",
+        "How long have you been collecting these items?",
+        
+    ];
+
+    if (currentStep < questions.length) {
+        display.innerHTML = `
+            <h4 style="color: var(--gold);">Question ${currentStep} of ${questions.length - 1}</h4>
+            <p>${questions[currentStep]}</p>
+            <input type="text" id="ans-box" style="width:100%; padding:10px; margin-bottom:15px; background:#222; color:white; border:1px solid #444;">
+            <button class="coin-btn" onclick="submitAns()">Next Question</button>
+        `;
+    } else {
+        finishInterview();
+    }
+}
+
+function submitAns() {
+    currentStep++;
+    askNextQuestion();
+}
+
+function finishInterview() {
+    const display = document.getElementById('modal-content');
+    let title = "";
+    if (userAnswers.qty > 500) title = "Grand Master Numismatist 🏛️";
+    else if (userAnswers.qty > 100) title = "Expert Curator 🧐";
+    else title = "Dedicated Historian 📜";
+
+    display.innerHTML = `
+        <div style="text-align:center;">
+            <h2 style="color: var(--gold);">Appraisal Complete!</h2>
+            <p style="font-size: 1.2rem;">You are a <strong>${title}</strong></p>
+            <p>Your collection of ${userAnswers.qty} items is a vital bridge to history. Your dedication to preserving these artifacts is what keeps the spirit of numismatics alive! <br> Keep it up!! </p>
+            <button class="coin-btn" onclick="closeCollectionModal()">Close Vault</button>
+        </div>
+    `;
+    }
+
+    // --- FOOTER INTERACTIVITY ---
+    function scrollToTop(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function smoothScroll(e, targetId) {
+        e.preventDefault();
+        document.getElementById(targetId).scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
+    function showHandlingTips() {
+        alert("Numismatic Handling Tips:\n\n- Always hold coins by their edges between your thumb and forefinger.\n- Use cotton gloves when handling high-value or proof coins.\n- Never, ever clean a coin. The natural patina is part of its value.\n- Store coins in PVC-free holders to prevent chemical damage.");
+    }
+
+    document.querySelectorAll('.social-card').forEach(button => {
+        button.addEventListener('click', function() {
+            const platform = this.querySelector('.social-name').innerText;
+            console.log(`User visiting ${platform}...`);
+        });
+    });
+
+    // --- INITIALIZATION ---
+    document.getElementById("query").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") localAI();
+    });
+
+    window.onload = () => {
+        console.log("Numismatica Engine Loaded.");
+    };
+</script>
+
+</body>
+</html>
